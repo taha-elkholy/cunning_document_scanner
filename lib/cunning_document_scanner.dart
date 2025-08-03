@@ -17,11 +17,9 @@ class CunningDocumentScanner {
     bool isGalleryImportAllowed = false,
     IosScannerOptions? iosScannerOptions,
   }) async {
-    Map<Permission, PermissionStatus> statuses = await [
-      Permission.camera,
-    ].request();
-    if (statuses.containsValue(PermissionStatus.denied) ||
-        statuses.containsValue(PermissionStatus.permanentlyDenied)) {
+    final status = await Permission.camera.request();
+    if (status == PermissionStatus.denied ||
+        status == PermissionStatus.permanentlyDenied) {
       throw Exception("Permission not granted");
     }
 
