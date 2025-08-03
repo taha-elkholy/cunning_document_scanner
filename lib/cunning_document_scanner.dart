@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import 'ios_options.dart';
 
@@ -17,11 +16,11 @@ class CunningDocumentScanner {
     bool isGalleryImportAllowed = false,
     IosScannerOptions? iosScannerOptions,
   }) async {
-    final status = await Permission.camera.request();
-    if (status == PermissionStatus.denied ||
-        status == PermissionStatus.permanentlyDenied) {
-      throw Exception("Permission not granted");
-    }
+    // final status = await Permission.camera.request();
+    // if (status == PermissionStatus.denied ||
+    //     status == PermissionStatus.permanentlyDenied) {
+    //   throw Exception("Permission not granted");
+    // }
 
     final List<dynamic>? pictures = await _channel.invokeMethod('getPictures', {
       'noOfPages': noOfPages,
